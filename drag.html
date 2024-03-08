@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Drag and Drop</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <style>
+
+        .jigsaw1, .jigsaw2 {
+      width: 20em;
+      height: 10em;
+      margin: 50px;
+      position: relative;
+      -webkit-border-radius: .5em;
+      -moz-border-radius: .5em;
+      border-radius: .5em;
+      cursor: pointer;
+    }
+    
+    .jigsaw1,
+    .jigsaw1 span {
+     background-color: #0284cf; 
+    }
+    
+    .jigsaw2,
+    .jigsaw2 span {
+     background-color: #00008B; 
+    }
+    
+    .text {
+      display: block;
+      color: #fff;
+      font-size: 1.2em;
+      text-align: center;
+      padding: 1.9em 0 0 1.2em;
+      position: relative;
+      background: transparent !important;
+    }
+    
+    .jigsaw1 .t, .jigsaw2 .t {
+     width: 2em;
+      height: 2em;
+      position: absolute;
+      top: -1.5em;
+      left: 2em;
+      -webkit-border-radius: 4em;
+      -moz-border-radius: 4em;
+      border-radius: 4em;
+    }
+    
+    
+    .jigsaw1 .t, .jigsaw2 .t {
+     width: 0em;
+      height: 2em;
+      position: absolute;
+      top: -1.5em;
+      left: 2em;
+      -webkit-border-radius: 4em;
+      -moz-border-radius: 4em;
+      border-radius: 4em;
+    }
+    
+    .jigsaw2 .r {
+     width: 17.2em;
+      height: 3em;
+      position: absolute;
+      top: 4em;
+      left: 5.5em;
+      -webkit-border-radius: 4em;
+      -moz-border-radius: 4em;
+      border-radius: 4em;
+    }
+    
+    .jigsaw1 .r{
+     width: 0em;
+      height: 2em;
+      position: absolute;
+      top: 2em;
+      left: 5.5em;
+      -webkit-border-radius: 4em;
+      -moz-border-radius: 4em;
+      border-radius: 4em;
+    }
+    
+    .jigsaw1 .b{ 
+     width: 0em;
+      height: 1.8em;
+      position: absolute;
+      top: 4.5em;
+      left: 2.2em;
+      -webkit-border-radius: 4em;
+      -moz-border-radius: 4em;
+      border-radius: 4em;
+      background-color: #fff;
+    }
+    
+    .jigsaw2 .b { 
+     width: 0em;
+      height: 1.8em;
+      position: absolute;
+      top: 4.5em;
+      left: 2.2em;
+      -webkit-border-radius: 4em;
+      -moz-border-radius: 4em;
+      border-radius: 4em;
+      background-color: #fff;
+    }
+    
+    .jigsaw1 .l{ 
+     width: 3em;
+      height: 3em;
+      position: absolute;
+      top: 4em;
+      left: -.4em;
+      -webkit-border-radius: 4em;
+      -moz-border-radius: 4em;
+      border-radius: 4em;
+      background-color: #fff;
+    }
+    
+    .jigsaw2 .l { 
+     width: 0em;
+      height: 0em;
+      position: absolute;
+      top: 2.2em;
+      left: -.4em;
+      -webkit-border-radius: 4em;
+      -moz-border-radius: 4em;
+      border-radius: 4em;
+      background-color: #fff;
+    }
+
+    .answerField:hover{
+      background-color: azure;
+    }
+
+ 
+
+    #confettis {
+  overflow: hidden;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.confetti {
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  transform-origin: left top;
+  animation: confetti 5s ease-in-out -2s infinite;
+}
+@keyframes confetti {
+  0% {
+    transform: rotateZ(15deg) rotateY(0deg) translate(0, 0);
+  }
+  25% {
+    transform: rotateZ(5deg) rotateY(360deg) translate(-5vw, 20vh);
+  }
+  50% {
+    transform: rotateZ(15deg) rotateY(720deg) translate(5vw, 60vh);
+  }
+  75% {
+    transform: rotateZ(5deg) rotateY(1080deg) translate(-10vw, 80vh);
+  }
+  100% {
+    transform: rotateZ(15deg) rotateY(1440deg) translate(10vw, 110vh);
+  }
+}
+
+.confetti:nth-child(1) {
+  left: 10%;
+  animation-delay: 0;
+  background-color: #fc0120;
+}
+.confetti:nth-child(2) {
+  left: 20%;
+  animation-delay: -5s;
+  background-color: #8257e6;
+}
+.confetti:nth-child(3) {
+  left: 30%;
+  animation-delay: -3s;
+  background-color: #ffbf4d;
+}
+.confetti:nth-child(4) {
+  left: 40%;
+  animation-delay: -2.5s;
+  background-color: #fe5d7a;
+}
+.confetti:nth-child(5) {
+  left: 50%;
+  animation-delay: -4s;
+  background-color: #45ec9c;
+}
+.confetti:nth-child(6) {
+  left: 60%;
+  animation-delay: -6s;
+  background-color: #f6e327;
+}
+.confetti:nth-child(7) {
+  left: 70%;
+  animation-delay: -1.5s;
+  background-color: #f769ce;
+}
+.confetti:nth-child(8) {
+  left: 80%;
+  animation-delay: -2s;
+  background-color: #007de7;
+}
+.confetti:nth-child(9) {
+  left: 90%;
+  animation-delay: -3.5s;
+  background-color: #63b4fc;
+}
+.confetti:nth-child(10) {
+  left: 100%;
+  animation-delay: -2.5s;
+  background-color: #f9c4ea;
+}
+
+.listOfChoices:hover{
+  background-color: rgba(255,255,255,0.6);
+  border-radius: 2;
+}
+
+body{
+      font-family: 'Arial', Courier, monospace;
+      background-image: url("img/wp3913041.webp");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-color: rgba(255,255,255,0.6);
+
+    }
+
+    </style>
+     
+
+</head>
+
+<body onload="playBg();">
+  <header>
+    <!-- place navbar here -->
+  </header>
+
+  <div id="confettis" style="z-index: -1;">
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+  </div>
+
+
+    
+
+ 
+
+    <audio id="correctAudio">
+        <source src="audio/correct.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+
+      <audio id="cheerAudio">
+        <source src="audio/crowd-cheer.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+
+      <audio id="wrongAudio">
+        <source src="audio/wrong.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+
+      <audio id="bgAudio" controls autoplay loop hidden>
+        <source src="audio/bg-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+<div class="vh-100 d-flex justify-content-center align-items-center">
+          <div class="container mt-5 border border-3 p-5 col-10 rounded-3 bg-warning">
+            <H6 class="text-white" id="questionNum"></H6>
+            <H1 class="text-success text-center" id="msg"></H1>
+            
+            <div class="row flex-col col-12 border-5 justify-content-center">
+
+            <div  class="col d-flex justify-content-center dropbox rounded-3 fs-4 border h-100 mx-1">
+                <span class="align-items-center mt-2" >
+                  <div class="test p-3 w-100 rounded-3 fw-bold text-center" id="questionBox">
+                    Question
+                    </div>
+            </div>
+            <div class="row mt-3 flex-col col-12 border-5 justify-content-center">
+            <div class="col-6 dropbox rounded-3 fs-4 border answerField mx-1 p-1"
+              ondrop="droppoint(event)" style="min-height: 100px;"
+              ondragover="allowDropOption(event)" data-accept="" id="answerBox">
+            </div>
+         </div>
+
+        </div>
+
+          
+
+          
+
+
+
+        <div class= "container fs-4 text-center mt-5">
+<div class="d-flex row justify-content-center">
+
+
+    <div class="col mb-3 listOfChoices" id="choicesTemplate" >
+                  
+      <span
+      draggable="true"
+      ondragstart="dragpoint(event)"  class=" text-white font-monospace rounded-3 text-center" data-target="A">
+      <div class="bg-success h-100 opacity-75 d-flex justify-content-center align-items-center p-3 rounded-3" id="choiceTxt" name="choiceTxt">
+        
+      </div>
+      </span>
+
+    </div>
+ 
+
+<div id="clonedDiv" class="d-flex"></div>
+
+        </div>
+
+        <div class="col-2 d-flex justify-content-center align-items-center w-100" style="z-index: 999999;">
+          
+          <button class="bg-transparent mt-3 mx-2 p-2 rounded-3 text-white border-0 fs-1 " id="prev">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+              <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+            </svg>
+          </button>
+          <button class="bg-transparent mt-3 mx-2 p-2 rounded-3 text-white border-0 fs-1" id="next">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+              <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+            </svg>
+          </button>
+
+
+          <button class="bg-transparent mt-3 mx-2 p-2 rounded-3 text-white border-0 fs-1" id="play" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-music-note-list" viewBox="0 0 16 16">
+              <path d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2z"/>
+              <path fill-rule="evenodd" d="M12 3v10h-1V3h1z"/>
+              <path d="M11 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 16 2.22V4l-5 1V2.82z"/>
+              <path fill-rule="evenodd" d="M0 11.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 7H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 3H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+          </button>
+        
+        </div>
+
+    </div>
+
+    
+<!-- The Modal -->
+<div class="modal fade" id="myModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <H1 class="text-success" id="msg2"></H1>
+
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" name="closeBtn">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</div>
+
+ 
+  <footer>
+    <!-- place footer here --> 
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="words.js"></script>
+
+<script>
+
+
+
+
+
+$(document).ready(function(){
+
+
+
+
+
+
+
+ 
+  $('#confettis').hide();
+  $('#choicesTemplate').hide();
+
+
+
+  // Get the query string from the URL
+  var queryString = window.location.search;
+    
+    // Remove the leading "?" character
+    queryString = queryString.substring(1);
+    
+    // Split the query string into an array of parameter=value pairs
+    var params = queryString.split("&");
+    
+    // Create an object to store the parameters
+    var paramMap = {};
+    
+    // Iterate through the parameter=value pairs and store them in the object
+    for (var i = 0; i < params.length; i++) {
+        var param = params[i].split("=");
+        paramMap[param[0]] = decodeURIComponent(param[1]);
+    }
+    
+    // Now you can access the parameters using paramMap
+    var q = paramMap["q"];
+
+//alert(q);
+//alert('list'+wordList.length-1);
+    if(q<=1){
+      $('#prev').hide();
+    }
+
+    if(q>wordList.length-1){
+       $('#next').hide();
+    }
+
+
+    q = q-1;
+    if(q < 0 || q == NaN){
+      q=0;
+    }
+
+
+    var currentUrl = window.location.href;
+    var baseUrl = currentUrl.split('?')[0];
+    $('#prev').click(function(){
+      
+      
+      window.location.href = baseUrl+"?q="+q;
+     // console.log("Base URL:", baseUrl);
+      //alert('clicked');
+        
+      });
+
+      $('#next').click(function(){
+        q = q+2;
+      
+      window.location.href = baseUrl+"?q="+q;
+
+     // console.log("Base URL:", baseUrl);
+      //alert('clicked');
+        
+      });
+
+      if(baseUrl == window.location.href){
+        window.location.href = baseUrl+"?q=1";
+      }
+     // alert(window.location.href);
+    //  alert(baseUrl);
+
+  
+  let ranItem = wordList[q];
+  
+  $('#questionNum').text('Tanong #'+ranItem.number);
+
+  $('#questionBox').text(ranItem.question);
+  $('#answerBox').attr("data-accept", ranItem.answer);
+
+
+  var choicesList = ranItem.choices.length;
+  for(var i = 0 ; i < choicesList; i++){
+  var choicesTemplate = $("#choicesTemplate").clone();
+  choicesTemplate.find("span").removeAttr("data-target");
+  choicesTemplate.find("span").attr("data-target", ranItem.choices[i]);
+  choicesTemplate.find("span").attr("id", ranItem.choices[i]);
+    $(choicesTemplate).find("#choiceTxt").text(ranItem.choices[i]);
+    var newTemp = choicesTemplate;
+    newTemp.insertBefore("#clonedDiv");
+    newTemp.show();
+    }
+
+});
+
+
+
+
+var bgAudio = document.getElementById("bgAudio"); 
+function playBg(){
+
+  // bgAudio.pause();
+  // bgAudio.currentTime = 0;
+  // bgAudio.play(); 
+}
+
+$('#play').click(function(){
+      
+    //  playBg();
+            
+          });
+
+
+
+var ok = document.getElementById("correctAudio"); 
+var cheer = document.getElementById("cheerAudio"); 
+var wrong = document.getElementById("wrongAudio");  
+
+
+
+
+
+// var dragLbl = document.getElementById("dragLbl"); 
+function correctAudio() { 
+    ok.pause();
+    ok.currentTime = 0;
+    cheer.pause();
+    cheer.currentTime = 0;
+    $('#confettis').show();
+    $('#myModal').modal('show');
+    ok.play(); 
+    cheer.play(); 
+} 
+
+function wrongAudio() {
+    wrong.pause();
+    wrong.currentTime = 1; 
+    wrong.play(); 
+} 
+
+
+
+
+
+
+
+    function droppoint(event) {
+      
+        var data = event.dataTransfer.getData("Text");
+        //alert(data);
+        var data2 = $(event.target).attr("data-accept");
+        var message  = '';
+        //alert(data2);
+       
+        if(data2 == data){
+     
+            event.target.appendChild(document.getElementById(data));
+            message = 'Mahusay!';
+
+            $('#msg').removeClass('text-danger');
+            correctAudio();
+        }else{
+          message = 'X';
+          $('#msg').addClass('text-danger');
+            wrongAudio();
+        }
+
+        $('#msg').text(message);
+        $('#msg2').text(message);
+      //  event.target.appendChild(document.getElementById(data));
+        event.preventDefault();
+    }
+
+    function allowDropOption(event) {
+        event.preventDefault();
+    }
+
+    function dragpoint(event) {
+        var data2 = '';
+        data2 = $(event.target).text();
+        data2 = $.trim(data2);
+      //alert(data2);
+      console.log(data2);
+        event.dataTransfer.setData("Text", event.target.id);
+        
+    }
+
+  
+
+    
+
+
+
+  </script>
+</body>
+
+</html>
